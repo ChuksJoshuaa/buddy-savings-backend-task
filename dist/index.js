@@ -20,6 +20,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
+const helmet_1 = __importDefault(require("helmet"));
 const not_found_1 = __importDefault(require("./middleware/not-found"));
 const error_handler_1 = __importDefault(require("./middleware/error-handler"));
 const user_1 = __importDefault(require("./routes/user"));
@@ -31,6 +32,7 @@ app.use(body_parser_1.default.json({ limit: "30mb" }));
 app.use(body_parser_1.default.urlencoded({ limit: "30mb", extended: true }));
 app.use((0, cors_1.default)());
 app.use((0, morgan_1.default)("dev"));
+app.use((0, helmet_1.default)());
 app.set("trust proxy", 1);
 app.use((0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,

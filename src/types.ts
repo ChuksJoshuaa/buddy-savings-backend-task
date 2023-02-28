@@ -11,7 +11,6 @@ export type UserAttributes = {
   password: string;
 };
 
-
 export type BuddyAttributes = {
   id: number;
   title: string;
@@ -28,3 +27,10 @@ export type BuddyAttributes = {
   buddiesRelationship: string;
 };
 
+export interface MessageProps {
+  to: string | undefined;
+  from: string | undefined;
+  subject: string;
+  text: string;
+  html: string;
+}

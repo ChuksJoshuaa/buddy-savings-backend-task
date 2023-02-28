@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AcceptInviteToBuddySaving = exports.deleteSingleBuddySaving = exports.updateBuddySaving = exports.getSingleBuddySaving = exports.getBuddySavingBySingleUser = exports.getAllBuddies = exports.createBuddy = void 0;
+exports.AcceptInviteToBuddySaving = exports.sendGridEmail = exports.deleteSingleBuddySaving = exports.updateBuddySaving = exports.getSingleBuddySaving = exports.getBuddySavingBySingleUser = exports.getAllBuddies = exports.createBuddy = void 0;
 const buddy_1 = __importDefault(require("../models/buddy"));
 const user_1 = __importDefault(require("../models/user"));
 const buddy_2 = require("../transformers/buddy");
+const mail_1 = __importDefault(require("@sendgrid/mail"));
 const createBuddy = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const buddy = req.body;
     const { title, buddies, buddiesTarget, savingMethod, savingFrequency, savingAmount, startSaving, endSaving, savingDuration, buddiesRelationship, } = buddy;
@@ -171,6 +172,33 @@ const deleteSingleBuddySaving = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.deleteSingleBuddySaving = deleteSingleBuddySaving;
+const sendGridEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { sender, receiver } = req.body;
+    try {
+        mail_1.default.setApiKey(process.env.SENDGRID_API_KEY);
+        const msg = {
+            to: receiver,
+            from: sender,
+            subject: "Buddy Saving Invite",
+            text: "Do you want to join my buddy saving plan",
+            html: '<div>Click this invite link <a href="/accept-invite">Here</a></div>',
+        };
+        mail_1.default
+            .send(msg)
+            .then(() => {
+            res.status(200).json(msg);
+        })
+            .catch((error) => {
+            res
+                .status(404)
+                .json({ error: `${error} associated with Send Grid email` });
+        });
+    }
+    catch (error) {
+        res.status(404).json({ error: `${error} associated with Send Grid email` });
+    }
+});
+exports.sendGridEmail = sendGridEmail;
 const AcceptInviteToBuddySaving = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const buddy = yield buddy_1.default.findOne({ where: { id: id } });

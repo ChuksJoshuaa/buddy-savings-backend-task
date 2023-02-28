@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import rateLimiter from "express-rate-limit";
 import cors from "cors";
 import logger from "morgan";
+import helmet from "helmet";
 
 //Error imports
 import notFound from "./middleware/not-found";
@@ -25,6 +26,7 @@ app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use(logger("dev"));
+app.use(helmet());
 
 //Extra packages
 app.set("trust proxy", 1);
@@ -56,7 +58,7 @@ const start = async () => {
       .then(() => {
         console.log("Drop and sync db.");
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
 
     await BuddyModel.sequelize
       ?.sync()

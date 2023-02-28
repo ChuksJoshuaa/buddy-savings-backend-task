@@ -7,5 +7,6 @@ declare namespace NodeJS {
     NODE_ENV: string;
     JWT_SECRET: string;
     JWT_LIFETIME: string;
+    SENDGRID_API_KEY: string;
   }
 }

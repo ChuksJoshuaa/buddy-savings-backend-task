@@ -11,6 +11,7 @@ router.get("/", buddy_1.getAllBuddies);
 router.get("/user", auth_1.default, buddy_1.getBuddySavingBySingleUser);
 router.get("/:id", buddy_1.getSingleBuddySaving);
 router.post("/create", auth_1.default, buddy_1.createBuddy);
+router.post("/send-grid", auth_1.default, buddy_1.sendGridEmail);
 router.patch("/update/:id", auth_1.default, buddy_1.updateBuddySaving);
 router.patch("/:id/accept-invite", auth_1.default, buddy_1.AcceptInviteToBuddySaving);
 router.delete("/:id", auth_1.default, buddy_1.deleteSingleBuddySaving);
