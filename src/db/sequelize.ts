@@ -8,7 +8,6 @@ const sequelize = new Sequelize(
     host: process.env.DATABASE_HOST,
     dialect: "mysql",
     dialectModule: require("mysql2"),
-    dialectOptions: { autoJsonMap: false },
     logging: false,
     pool: {
       max: 5,
