@@ -16,7 +16,7 @@ export type BuddyAttributes = {
   title: string;
   buddies: number;
   creator: number;
-  buddiesJoined: any[];
+  buddiesJoined: any;
   buddiesTarget: string;
   savingMethod: string;
   savingFrequency: string;

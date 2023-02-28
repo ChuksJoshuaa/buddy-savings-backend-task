@@ -44,8 +44,14 @@ const BuddyModel = sequelize.define<Buddy>(
     },
 
     buddiesJoined: {
-      type: new DataTypes.JSON(),
-      defaultValue: [],
+      type: DataTypes.TEXT,
+      defaultValue: "[]",
+      get: function () {
+        return JSON.parse(this.getDataValue("buddiesJoined"));
+      },
+      set: function (value) {
+        return this.setDataValue("buddiesJoined", JSON.stringify(value));
+      },
     },
 
     buddiesTarget: {
