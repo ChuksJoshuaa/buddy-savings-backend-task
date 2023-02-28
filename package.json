@@ -6,8 +6,8 @@
   "scripts": {
     "watch": "tsc -w",
     "build": "tsc -p .",
-    "dev": "node ./dist/src/index.js",
-    "start": "node ./dist/src/index.js",
+    "dev": "node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "start1": "ts-node src/index.ts",
     "dev2": "nodemon --exec ts-node src/index.ts"
   },
