@@ -5,6 +5,7 @@ const sequelize = new sequelize_1.Sequelize(process.env.DATABASE_NAME, process.e
     host: process.env.DATABASE_HOST,
     dialect: "mysql",
     dialectModule: require("mysql2"),
+    dialectOptions: { autoJsonMap: false },
     logging: false,
     pool: {
         max: 5,
