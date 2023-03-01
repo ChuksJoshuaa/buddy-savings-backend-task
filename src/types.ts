@@ -11,12 +11,18 @@ export type UserAttributes = {
   password: string;
 };
 
+export interface UserProps {
+  id: number;
+  email: string;
+  username: string;
+}
+
 export type BuddyAttributes = {
   id: number;
   title: string;
   buddies: number;
   creator: number;
-  buddiesJoined: any;
+  buddiesJoined: UserProps[];
   buddiesTarget: string;
   savingMethod: string;
   savingFrequency: string;

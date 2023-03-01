@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { BuddyAttributes } from "../types";
+import { BuddyAttributes, UserProps } from "../types";
 import sequelize from "../db/sequelize";
 
 type BuddyCreationAttributes = Optional<BuddyAttributes, "id">;
@@ -9,7 +9,7 @@ class Buddy extends Model<BuddyAttributes | BuddyCreationAttributes> {
   declare title: string;
   declare buddies: number;
   declare creator: number;
-  declare buddiesJoined: any[];
+  declare buddiesJoined: UserProps[];
   declare buddiesTarget: string;
   declare savingMethod: string;
   declare savingFrequency: string;
@@ -44,14 +44,8 @@ const BuddyModel = sequelize.define<Buddy>(
     },
 
     buddiesJoined: {
-      type: DataTypes.TEXT,
-      defaultValue: "[]",
-      get: function () {
-        return JSON.parse(this.getDataValue("buddiesJoined"));
-      },
-      set: function (value) {
-        return this.setDataValue("buddiesJoined", JSON.stringify(value));
-      },
+      type: new DataTypes.ARRAY(DataTypes.JSON),
+      defaultValue: [],
     },
 
     buddiesTarget: {
