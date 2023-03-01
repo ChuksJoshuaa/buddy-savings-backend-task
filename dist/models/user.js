@@ -9,7 +9,7 @@ class User extends sequelize_1.Model {
 }
 const UserModel = sequelize_2.default.define("User", {
     id: {
-        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
+        type: new sequelize_1.DataTypes.INTEGER(),
         autoIncrement: true,
         primaryKey: true,
     },

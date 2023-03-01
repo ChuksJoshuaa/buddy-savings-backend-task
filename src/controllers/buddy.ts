@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { BuddyAttributes, MessageProps } from "../types";
+import { BuddyAttributes, MessageProps, UserProps } from "../types";
 import HttpException from "../exceptions/HttpExceptions";
 import BuddyModel from "../models/buddy";
 import UserModel from "../models/user";
@@ -215,7 +215,6 @@ export const deleteSingleBuddySaving = async (
   }
 };
 
-
 //Sending Invite using Send Grid Email
 export const sendGridEmail = async (
   req: Request,
@@ -275,14 +274,14 @@ export const AcceptInviteToBuddySaving = async (
       };
 
       const findValue = buddyJoined.find(
-        (item: BuddyAttributes) => item.id === myInterestingData.id
+        (item) => item.id === myInterestingData.id
       );
 
       if (findValue) {
         return res.status(404).json({ msg: "User is already invited" });
       }
 
-      newArray.push(myInterestingData);
+      newArray.push(myInterestingData as UserProps);
 
       await buddy
         .update({
@@ -304,4 +303,3 @@ export const AcceptInviteToBuddySaving = async (
     }
   }
 };
-

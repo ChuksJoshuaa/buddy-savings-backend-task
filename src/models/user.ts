@@ -15,7 +15,7 @@ const UserModel = sequelize.define<User>(
   "User",
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: new DataTypes.INTEGER(),
       autoIncrement: true,
       primaryKey: true,
     },

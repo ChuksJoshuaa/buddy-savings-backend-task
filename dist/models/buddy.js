@@ -26,7 +26,7 @@ const BuddyModel = sequelize_2.default.define("Buddy", {
         allowNull: false,
     },
     buddiesJoined: {
-        type: new sequelize_1.DataTypes.JSON(),
+        type: new sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.JSON),
         defaultValue: [],
     },
     buddiesTarget: {
