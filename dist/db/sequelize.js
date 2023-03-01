@@ -13,7 +13,7 @@ const sequelize = new sequelize_1.Sequelize(process.env.DATABASE_NAME, process.e
     pool: {
         max: 5,
         idle: 30000,
-        acquire: 60000,
+        acquire: 40000,
     },
 });
 exports.default = sequelize;
