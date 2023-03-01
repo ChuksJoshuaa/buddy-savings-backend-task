@@ -5,6 +5,10 @@ const sequelize = new sequelize_1.Sequelize(process.env.DATABASE_NAME, process.e
     host: process.env.DATABASE_HOST,
     port: Number(process.env.DATABASE_PORT),
     dialect: "postgres",
+    dialectOptions: {
+        ssl: true,
+        native: true,
+    },
     logging: false,
     pool: {
         max: 5,
