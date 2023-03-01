@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-
+require("pg");
 const sequelize = new Sequelize(
   process.env.DATABASE_NAME!,
   process.env.DATABASE_USER!,
@@ -16,7 +16,7 @@ const sequelize = new Sequelize(
     pool: {
       max: 5,
       idle: 30000,
-      acquire: 60000,
+      acquire: 40000,
     },
   }
 );
